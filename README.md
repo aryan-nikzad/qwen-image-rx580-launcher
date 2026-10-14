@@ -57,6 +57,25 @@ These are device indices as enumerated by the build, **not guaranteed physical G
 - This configuration is a tested starting point, not a guarantee of best performance on every RX 580 system. GPU memory, PCIe topology, driver version, and build options can change results.
 - Model weights are not included in this repository. Respect the license and terms that apply to each model.
 
+
+## Qwen Image prompt enhancer (Heretic)
+
+The repository also includes `run-qwen-image-2.1-pe-heretic.sh`, a separate `llama-server` launcher for the Qwen Image 2.1 PE Heretic Q4_K_M prompt-enhancer model.
+
+- **Model:** `pe_t2i_heretic-Q4_K_M.gguf`
+- **Server address:** `http://127.0.0.1:8081`
+- **Vulkan device visibility:** `GGML_VK_VISIBLE_DEVICES=2`
+- **Expected files:** the model and `system_prompt.txt` in the `PE` directory
+
+Edit `BASE` and `DIR` in the script for your machine, then run:
+
+```bash
+chmod +x run-qwen-image-2.1-pe-heretic.sh
+./run-qwen-image-2.1-pe-heretic.sh
+```
+
+The launcher starts the server only; it does not automatically connect the prompt enhancer to `sd-server`. The `system_prompt.txt` file is checked for existence by the script but is not explicitly passed as a server argument.
+
 ## License
 
 This repository's launcher and documentation are released under the MIT License. See [LICENSE](LICENSE). Third-party software and model weights retain their own licenses.
